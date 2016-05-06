@@ -19,9 +19,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.basedir(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '=7umz!1th$g*l4labxc6274-75)kfw7kc7-@1dsi#j$aiync(i'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -108,3 +105,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'npr_interludes', 'static'),
+)
+
+MEDIA_ROOT = '/media/'
