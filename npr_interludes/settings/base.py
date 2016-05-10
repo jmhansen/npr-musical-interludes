@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # project apps
-    'songs'
+    'songs.apps.SongsConfig'
 ]
 
 MIDDLEWARE_CLASSES = [
