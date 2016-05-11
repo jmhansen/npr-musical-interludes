@@ -55,7 +55,9 @@ ROOT_URLCONF = 'npr_interludes.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, "npr_interludes", "templates")
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
