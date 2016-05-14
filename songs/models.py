@@ -11,6 +11,10 @@ class Program(models.Model):
     def __unicode__(self):
         return self.name
 
+    @property
+    def date_latest_episode(self):
+        return self.episodes.latest().date
+
 
 class Episode(models.Model):
     """ Specific airing of a program, unique by date"""
@@ -19,6 +23,7 @@ class Episode(models.Model):
 
     class Meta:
         unique_together = ('program', 'date')
+        get_latest_by = 'date'
 
 
 class Artist(models.Model):
