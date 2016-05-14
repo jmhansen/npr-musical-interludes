@@ -38,6 +38,14 @@ class Song(models.Model):
     def __unicode__(self):
         return self.name
 
+    @property
+    def num_interludes(self):
+        return self.interludes.count()
+
+    @property
+    def date_last_played(self):
+        return self.interludes.latest().episode.date
+
 
 class Interlude(models.Model):
     """ The clip or instance of a song used in an interlude. """
@@ -47,6 +55,7 @@ class Interlude(models.Model):
 
     class Meta:
         unique_together = ('song', 'order', 'episode')
+        get_latest_by = 'episode__date'
 
     def __unicode__(self):
         return u"{} - {} - {}".format(self.song.name, self.episode.program.name, self.order)

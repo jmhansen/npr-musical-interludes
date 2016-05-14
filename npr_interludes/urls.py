@@ -22,5 +22,6 @@ from songs import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.IndexView.as_view(), name='home')
+    url(r'^$', views.IndexView.as_view(), name='home'),
+    url(r'^songs/top-25/$', views.SongListTop25View.as_view(), name='song_list_top_25')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

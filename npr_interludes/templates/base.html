@@ -14,25 +14,22 @@
     <body>
 
         <nav class="navbar navbar-light bg-faded">
-            <a class="navbar-brand" href="#">Public Radio Interlude Database</a>
-            <ul class="nav navbar-nav">
+            <a class="navbar-brand" href="{% url 'home' %}">Public Radio Interlude Database</a>
+            <ul class="nav navbar-nav pull-sm-right pull-md-right">
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
+                    <a class="nav-link" href="#">Recent</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link" href="#">Charts</a>
                 </li>
             </ul>
-            <form class="form-inline pull-xs-right">
-                <input class="form-control" type="text" placeholder="Search">
-                <button class="btn btn-success-outline" type="submit">Search</button>
-            </form>
+{#            <form class="form-inline pull-xs-right">#}
+{#                <input class="form-control" type="text" placeholder="Search">#}
+{#                <button class="btn btn-success-outline" type="submit">Search</button>#}
+{#            </form>#}
         </nav>
 
         {% block content %}
