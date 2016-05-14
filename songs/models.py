@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.db.models import Count
 
 
 class Program(models.Model):
@@ -31,6 +32,14 @@ class Artist(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    @property
+    def num_songs(self):
+        return self.songs.count()
+
+    @property
+    def num_interludes(self):
+        return Interlude.objects.filter(song__artist=self).count()
 
 
 class Song(models.Model):

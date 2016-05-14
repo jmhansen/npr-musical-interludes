@@ -9,6 +9,7 @@
         <div class="starter-template">
             <p class="lead text-center">Hello World!</p>
             <a href="{% url 'song_list_top_25' %}">Top Songs</a>
+            <a href="{% url 'artist_list_top_25' %}">Top Artists</a>
 
             {% for program in program_list %}
                 <p>{{ program.name }}</p>

@@ -22,6 +22,14 @@ class SongListTop25View(ListView):
         return models.Song.objects.annotate(interlude_count=Count('interludes')).order_by('-interlude_count')[:25]
 
 
+class ArtistListTop25View(ListView):
+    model = models.Artist
+    template_name = 'songs/artist_list_top_25.html'
+
+    def get_queryset(self):
+        return models.Artist.objects.annotate(interlude_count=Count('songs__interludes')).order_by('-interlude_count')[:25]
+
+
 class EpisodeDetailView(DetailView):
     model = models.Episode
     template_name = 'songs/episode_detail.html'
