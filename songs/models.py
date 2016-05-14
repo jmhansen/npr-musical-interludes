@@ -6,6 +6,7 @@ from django.db import models
 class Program(models.Model):
     """ Name of the NPR program or show"""
     name = models.CharField(max_length=50, unique=True)  # maybe make a choice field
+    slug = models.SlugField(max_length=75)
 
     def __unicode__(self):
         return self.name
