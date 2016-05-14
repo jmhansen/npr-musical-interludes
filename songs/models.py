@@ -62,6 +62,7 @@ class Interlude(models.Model):
     class Meta:
         unique_together = ('song', 'order', 'episode')
         get_latest_by = 'episode__date'
+        ordering = ['order']
 
     def __unicode__(self):
         return u"{} - {} - {}".format(self.song.name, self.episode.program.name, self.order)

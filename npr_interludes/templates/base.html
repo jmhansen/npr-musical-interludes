@@ -17,13 +17,13 @@
             <a class="navbar-brand" href="{% url 'home' %}">Public Radio Interlude Database</a>
             <ul class="nav navbar-nav pull-sm-right pull-md-right">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Recent</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Charts</a>
+                    <a class="nav-link" href="{% url 'song_list_top_25' %}">Charts</a>
                 </li>
             </ul>
 {#            <form class="form-inline pull-xs-right">#}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="starter-template">
+            <br>
+            <h1 class="text-center">{{ object.program.name }} - {{ object.date }}</h1>
+            <p class="lead text-center">Lorem ipsum stuff.</p>
+            {% if prev_episode %}
+                <a href="{% url 'episode_detail' program_slug=prev_episode.program.slug episode_date=prev_episode.date %}">Previous</a>
+            {% endif %}
+            {% if next_episode %}
+                <a href="{% url 'episode_detail' program_slug=next_episode.program.slug episode_date=next_episode.date %}">Next</a>
+            {% endif %}
+        </div>
+
+        <ul class="list-group">
+            {% for interlude in interlude_list %}
+                <li class="list-group-item">
+                    {{ forloop.counter }}.  <strong>{{ interlude.song.name }}</strong> | <em>{{ interlude.song.artist.name }}</em>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <br>
+        <br>
+
+    </div><!-- /.container -->
+
+
+{% endblock %}
