@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="starter-template">
+            <br>
+            <h1 class="text-center">{{ object.name }}</h1>
+            <p class="lead text-center">Lorem ipsum stuff.</p>
+        </div>
+
+
+        <h3>Songs</h3>
+        <ul class="list-group">
+            {% for song in object.songs.all %}
+                <li class="list-group-item">
+                    {{ forloop.counter }}.  <strong>{{ song.name }}</strong> | <em>Last played {{ song.date_last_played }}</em>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <br>
+        <br>
+
+    </div><!-- /.container -->
+
+
+{% endblock %}

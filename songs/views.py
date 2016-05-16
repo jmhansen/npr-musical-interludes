@@ -50,3 +50,7 @@ class EpisodeDetailView(DetailView):
             pass
         return context
 
+
+class ArtistDetailView(DetailView):
+    model = models.Artist
+    template_name = 'songs/artist_detail.html'
