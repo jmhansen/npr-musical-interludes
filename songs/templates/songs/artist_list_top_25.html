@@ -12,14 +12,14 @@
             <p class="lead text-center">The artists used most frequently by NPR programs over the past 10 years.</p>
         </div>
 
-        <ul class="list-group">
+        <div class="list-group">
             {% for artist in object_list %}
-                <li class="list-group-item">
+                <a href="{% url 'artist_detail' slug=artist.slug %}" class="list-group-item">
 {#                    <span class="label label-default label-pill pull-xs-right">{{ song.num_interludes }}</span>#}
                     {{ forloop.counter }}.  <strong>{{ artist.name }}</strong> | <em>{{ artist.num_songs }} songs, {{ artist.num_interludes }} plays</em>
-                </li>
+                </a>
             {% endfor %}
-        </ul>
+        </div>
 
         <br>
         <br>

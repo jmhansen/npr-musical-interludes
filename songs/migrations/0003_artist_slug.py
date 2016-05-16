@@ -12,8 +12,8 @@ def fill_artist_slug_field(apps, schema_editor):
     for artist in Artist.objects.all():
         if not artist.name:
             artist.name = 'unknown artist'
-            artist.slug = slugify(artist.name)
-            artist.save()
+        artist.slug = slugify(artist.name)
+        artist.save()
 
 
 class Migration(migrations.Migration):
