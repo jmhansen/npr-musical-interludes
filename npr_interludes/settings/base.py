@@ -26,6 +26,14 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+#Load vars from env (all in one place so they're visible)
+ENV_VARS = {
+    'SECRET_KEY': os.environ.get('SECRET_KEY'),
+}
+
+SECRET_KEY = ENV_VARS['SECRET_KEY']
+
+
 # Parse database configuration from $DATABASE_URL
 DATABASES = {'default': dj_database_url.config()}
 DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql_psycopg2'
