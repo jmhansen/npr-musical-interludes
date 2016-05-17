@@ -28,7 +28,7 @@ class Episode(models.Model):
 
 
 class Artist(models.Model):
-    name = models.CharField(max_length=100, unique=True)
+    name = models.CharField(max_length=125, unique=True)
     slug = models.SlugField(max_length=150)
 
     def __unicode__(self):
