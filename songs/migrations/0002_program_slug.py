@@ -6,12 +6,12 @@ from django.db import migrations, models
 from django.utils.text import slugify
 
 
-def fill_program_slug_field(apps, schema_editor):
-    Program = apps.get_model('songs', 'Program')
-
-    for program in Program.objects.all():
-        program.slug = slugify(program.name)
-        program.save()
+# def fill_program_slug_field(apps, schema_editor):
+#     Program = apps.get_model('songs', 'Program')
+#
+#     for program in Program.objects.all():
+#         program.slug = slugify(program.name)
+#         program.save()
 
 
 class Migration(migrations.Migration):
@@ -31,5 +31,4 @@ class Migration(migrations.Migration):
             field=models.SlugField(default='', max_length=75),
             preserve_default=False,
         ),
-        migrations.RunPython(fill_program_slug_field),
     ]

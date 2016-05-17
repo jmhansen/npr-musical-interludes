@@ -6,14 +6,14 @@ from django.db import migrations, models
 from django.utils.text import slugify
 
 
-def fill_artist_slug_field(apps, schema_editor):
-    Artist = apps.get_model('songs', 'Artist')
-
-    for artist in Artist.objects.all():
-        if not artist.name:
-            artist.name = 'unknown artist'
-        artist.slug = slugify(artist.name)
-        artist.save()
+# def fill_artist_slug_field(apps, schema_editor):
+#     Artist = apps.get_model('songs', 'Artist')
+#
+#     for artist in Artist.objects.all():
+#         if not artist.name:
+#             artist.name = 'unknown artist'
+#         artist.slug = slugify(artist.name)
+#         artist.save()
 
 
 class Migration(migrations.Migration):
@@ -37,5 +37,4 @@ class Migration(migrations.Migration):
             field=models.SlugField(default='', max_length=150),
             preserve_default=False,
         ),
-        migrations.RunPython(fill_artist_slug_field),
     ]
