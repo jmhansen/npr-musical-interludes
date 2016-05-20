@@ -10,10 +10,11 @@
         <!-- Bootstrap CSS -->
         <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">-->
         <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'style.css' %}" rel="stylesheet">
     </head>
     <body>
 
-        <nav class="navbar navbar-light bg-faded">
+        <nav class="navbar navbar-full navbar-dark" style="background-color: #171717;">
             <a class="navbar-brand" href="{% url 'home' %}">Public Radio Interlude Database</a>
             <ul class="nav navbar-nav pull-sm-right pull-md-right">
                 <li class="nav-item active">

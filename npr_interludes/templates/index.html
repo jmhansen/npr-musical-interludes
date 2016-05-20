@@ -4,21 +4,39 @@
 
 {% block content %}
 
+    <br>
+
     <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="starter-template">
+                    <h3>Programs</h3>
 
-        <div class="starter-template">
-            <p class="lead text-center">Hello World!</p>
-            <a href="{% url 'song_list_top_25' %}">Top Songs</a>
-            <a href="{% url 'artist_list_top_25' %}">Top Artists</a>
 
-            {% for program in program_list %}
-                <p>{{ program.name }}</p>
-                <a href="{% url 'episode_detail' program_slug=program.slug episode_date=program.date_latest_episode %}">See latest episode</a>
-            {% endfor %}
 
+                    {% for program in program_list %}
+                        <div class="card">
+                            <div class="card-block">
+                                <h5 class="card-title">{{ program.name }}</h5>
+                                <h6 class="card-subtitle text-muted"><a href="{% url 'episode_detail' program_slug=program.slug episode_date=program.date_latest_episode %}">See latest episode</a></h6>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <a href="{% url 'song_list_top_25' %}">Top Songs</a>
+            </div>
+
+            <div class="col-sm-3">
+                <a href="{% url 'artist_list_top_25' %}">Top Artists</a>
+            </div>
         </div>
 
     </div><!-- /.container -->
+
 
 
 {% endblock %}
