@@ -8,30 +8,45 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <div class="starter-template">
-                    <h3>Programs</h3>
+                    <h4>Programs</h4>
 
 
+                </div>
 
+                <ul class="list-group">
                     {% for program in program_list %}
-                        <div class="card">
-                            <div class="card-block">
-                                <h5 class="card-title">{{ program.name }}</h5>
-                                <h6 class="card-subtitle text-muted"><a href="{% url 'episode_detail' program_slug=program.slug episode_date=program.date_latest_episode %}">See latest episode</a></h6>
-                            </div>
-                        </div>
+                        <a href="{% url 'episode_detail' program_slug=program.slug episode_date=program.date_latest_episode %}" class="list-group-item">
+                            {{ program.name }}
+                        </a>
                     {% endfor %}
+                </ul>
+            </div>
 
+            <div class="col-sm-4">
+                <h4>Top Artists</h4>
+                <div class="list-group">
+                    {% for artist in top_artists %}
+                        <a href="{% url 'artist_detail' slug=artist.slug %}" class="list-group-item">
+                            {{ forloop.counter }}.  {{ artist.name }} | <em>{{ artist.num_songs }} songs, {{ artist.num_interludes }} plays</em>
+                        </a>
+                    {% endfor %}
+                    <a href="{% url 'artist_list_top_25' %}">View more</a>
                 </div>
             </div>
 
-            <div class="col-sm-3">
-                <a href="{% url 'song_list_top_25' %}">Top Songs</a>
-            </div>
-
-            <div class="col-sm-3">
-                <a href="{% url 'artist_list_top_25' %}">Top Artists</a>
+            <div class="col-sm-4">
+                <h4>Top Songs</h4>
+                <ul class="list-group">
+                    {% for song in top_songs %}
+                        <li class="list-group-item">
+                            <span class="label label-default label-pill pull-xs-right">{{ song.num_interludes }}</span>
+                            {{ forloop.counter }}.  {{ song.name }} | <em>{{ song.artist.name }}</em>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <a href="{% url 'song_list_top_25' %}">View more</a>
             </div>
         </div>
 
