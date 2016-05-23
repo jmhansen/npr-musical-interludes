@@ -32,6 +32,9 @@ class Artist(models.Model):
     name = models.CharField(max_length=125, unique=True)
     slug = models.SlugField(max_length=150)
 
+    # for 'Various Artists', 'NA', and others that should not be displayed in lists of artists
+    hidden = models.BooleanField(default=False)
+
     def __unicode__(self):
         return self.name
 

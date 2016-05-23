@@ -11,6 +11,11 @@ class IndexView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
         context['program_list'] = models.Program.objects.all()
+        context['top_artists'] = (models.Artist.objects.exclude(hidden=True)
+                                                       .annotate(interlude_count=Count('songs__interludes'))
+                                                       .order_by('-interlude_count')[:10])
+        context['top_songs'] = (models.Song.objects.annotate(interlude_count=Count('interludes'))
+                                                   .order_by('-interlude_count')[:10])
         return context
 
 
@@ -27,7 +32,9 @@ class ArtistListTop25View(ListView):
     template_name = 'songs/artist_list_top_25.html'
 
     def get_queryset(self):
-        return models.Artist.objects.annotate(interlude_count=Count('songs__interludes')).order_by('-interlude_count')[:25]
+        return (models.Artist.objects.exclude(hidden=True)
+                                     .annotate(interlude_count=Count('songs__interludes'))
+                                     .order_by('-interlude_count')[:25])
 
 
 class EpisodeDetailView(DetailView):
