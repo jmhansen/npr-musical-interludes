@@ -13,3 +13,17 @@ body {
     margin: 0;
     padding: 1rem;
 }
+
+.artist-thumbnail {
+    float: left;
+}
+
+.artist-detail {
+    /*float: left;*/
+    margin-left: 100px;
+    padding-top: 10px;
+}
+
+audio {
+    background-color: white;
+}

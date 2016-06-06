@@ -28,8 +28,17 @@
                 <h4>Top Artists</h4>
                 <div class="list-group">
                     {% for artist in top_artists %}
-                        <a href="{% url 'artist_detail' slug=artist.slug %}" class="list-group-item">
-                            {{ forloop.counter }}.  {{ artist.name }} | <em>{{ artist.num_songs }} songs, {{ artist.num_interludes }} plays</em>
+                        <a href="{% url 'artist_detail' slug=artist.slug %}" class="list-group-item" style="height: 64px; padding: 2px;">
+                            <div class="artist-thumbnail">
+                                {% if artist.thumbnail %}
+                                    <img src="{{ artist.thumbnail }}" height="60px">
+                                {% endif %}
+                            </div>
+                            <div class="artist-detail">
+                                <strong>{{ artist.name }}</strong>
+                                <br>
+                                <em>{{ artist.num_interludes }} plays, {{ artist.num_songs }} songs</em>
+                            </div>
                         </a>
                     {% endfor %}
                     <a href="{% url 'artist_list_top_25' %}">View more</a>
@@ -43,6 +52,12 @@
                         <li class="list-group-item">
                             <span class="label label-default label-pill pull-xs-right">{{ song.num_interludes }}</span>
                             {{ forloop.counter }}.  {{ song.name }} | <em>{{ song.artist.name }}</em>
+                            {% if song.preview %}
+                                <audio controls>
+                                    <source src="{{ song.preview }}" type="audio/mpeg">
+                                    audio player not supported
+                                </audio>
+                            {% endif %}
                         </li>
                     {% endfor %}
                 </ul>
