@@ -31,6 +31,7 @@ class Episode(models.Model):
 class Artist(models.Model):
     name = models.CharField(max_length=125, unique=True)
     slug = models.SlugField(max_length=150)
+    thumbnail = models.URLField(blank=True)
 
     # for 'Various Artists', 'NA', and others that should not be displayed in lists of artists
     hidden = models.BooleanField(default=False)
@@ -51,6 +52,7 @@ class Song(models.Model):
     name = models.CharField(max_length=255)
     # Some songs do not have an artist listed
     artist = models.ForeignKey(Artist, related_name='songs', blank=True, null=True)
+    preview = models.URLField(blank=True)
 
     class Meta:
         unique_together = ('name', 'artist')
