@@ -31,7 +31,7 @@
                         <a href="{% url 'artist_detail' slug=artist.slug %}" class="list-group-item" style="height: 64px; padding: 2px;">
                             <div class="artist-thumbnail">
                                 {% if artist.thumbnail %}
-                                    <img src="{{ artist.thumbnail }}" height="60px">
+                                    <img src="{{ artist.thumbnail }}" class="portrait" alt="Image" />
                                 {% endif %}
                             </div>
                             <div class="artist-detail">

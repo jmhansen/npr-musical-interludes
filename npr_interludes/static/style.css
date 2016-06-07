@@ -14,13 +14,33 @@ body {
     padding: 1rem;
 }
 
+
 .artist-thumbnail {
+    position: relative;
     float: left;
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+}
+
+.artist-thumbnail img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 100%;
+    width: auto;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+
+.artist-thumbnail img.portrait {
+    width: 100%;
+    height: auto;
 }
 
 .artist-detail {
-    /*float: left;*/
-    margin-left: 100px;
+    margin-left: 70px;
     padding-top: 10px;
 }
 
