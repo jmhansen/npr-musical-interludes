@@ -51,13 +51,20 @@
                     {% for song in top_songs %}
                         <li class="list-group-item">
                             <span class="label label-default label-pill pull-xs-right">{{ song.num_interludes }}</span>
-                            {{ forloop.counter }}.  {{ song.name }} | <em>{{ song.artist.name }}</em>
                             {% if song.preview %}
-                                <audio controls>
-                                    <source src="{{ song.preview }}" type="audio/mpeg">
-                                    audio player not supported
-                                </audio>
+                                <div class="song-preview">
+                                    <i class="material-icons play md-36">play_circle_outline</i>
+                                    <audio src="{{ song.preview }}" type="audio/mpeg">
+                                        <source src="{{ song.preview }}" type="audio/mpeg">
+                                    </audio>
+                                </div>
                             {% endif %}
+
+                            <div class="song-detail">
+                                <strong>{{ song.name }}</strong>
+                                <br>
+                                <em>{{ song.artist.name }}</em>
+                            </div>
                         </li>
                     {% endfor %}
                 </ul>
