@@ -18,7 +18,7 @@
                 <ul class="list-group">
                     {% for program in program_list %}
                         <a href="{% url 'episode_detail' program_slug=program.slug episode_date=program.date_latest_episode %}" class="list-group-item">
-                            {{ program.name }}
+                            <strong>{{ program.name }}</strong>
                         </a>
                     {% endfor %}
                 </ul>
