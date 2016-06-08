@@ -47,6 +47,14 @@ class Artist(models.Model):
     def num_interludes(self):
         return Interlude.objects.filter(song__artist=self).count()
 
+    @property
+    def earliest_episode(self):
+        return Episode.objects.filter(interludes__song__artist=self).earliest('date')
+
+    @property
+    def latest_episode(self):
+        return Episode.objects.filter(interludes__song__artist=self).latest('date')
+
 
 class Song(models.Model):
     name = models.CharField(max_length=255)

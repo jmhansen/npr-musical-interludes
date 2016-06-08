@@ -5,23 +5,47 @@
 {% block content %}
 
     <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
 
-        <div class="starter-template">
-            <br>
-            <h1 class="text-center">{{ object.name }}</h1>
-            <p class="lead text-center">Lorem ipsum stuff.</p>
+                <br>
+                <h1 class="text-lg-right">{{ object.name }}</h1>
+                {% if object.thumbnail %}
+                    <img src="{{ object.thumbnail }}" style="float: right;" alt="Image" />
+                {% endif %}
+
+                <div class="artist-data">
+                    <p>{{ object.num_interludes }} plays</p>
+                    <p>{{ object.num_songs }} songs</p>
+                    <p>First aired: {{ object.earliest_episode.date }}</p>
+                    <p>Last aired: {{ object.latest_episode.date }}</p>
+                </div>
+
+            </div>
+
+            <div class="col-sm-5">
+                <br>
+                <ul class="list-group">
+                    {% for song in artist_songs %}
+                        <li class="list-group-item">
+                            {% if song.preview %}
+                                <div class="song-preview">
+                                    <i class="material-icons play md-36">play_circle_outline</i>
+                                    <audio src="{{ song.preview }}" type="audio/mpeg">
+                                        <source src="{{ song.preview }}" type="audio/mpeg">
+                                    </audio>
+                                </div>
+                            {% endif %}
+                            <div class="song-detail">
+                                <strong>{{ song.name }}</strong>
+                                <br>
+                                <em>{{ song.num_interludes }} plays</em> | <em>Last played {{ song.date_last_played }}</em>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
-
-
-        <h3>Songs</h3>
-        <ul class="list-group">
-            {% for song in object.songs.all %}
-                <li class="list-group-item">
-                    {{ forloop.counter }}.  <strong>{{ song.name }}</strong> | <em>Last played {{ song.date_last_played }}</em>
-                </li>
-            {% endfor %}
-        </ul>
-
         <br>
         <br>
 

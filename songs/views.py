@@ -61,3 +61,10 @@ class EpisodeDetailView(DetailView):
 class ArtistDetailView(DetailView):
     model = models.Artist
     template_name = 'songs/artist_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ArtistDetailView, self).get_context_data(**kwargs)
+        context['artist_songs'] = (self.object.songs.all()
+                                                    .annotate(interlude_count=Count('interludes'))
+                                                    .order_by('-interlude_count'))
+        return context

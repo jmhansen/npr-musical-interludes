@@ -44,6 +44,13 @@ body {
     padding-top: 10px;
 }
 
+.artist-data {
+    clear: right;
+    padding-top: 1em;
+    line-height: .5;
+    text-align: right;
+}
+
 .song-preview {
     position: relative;
     float: left;
