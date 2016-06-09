@@ -5,24 +5,39 @@
 {% block content %}
 
     <div class="container">
+        <div class="row">
+            <div class="col-sm-4 text-lg-right text-md-right">
+                <br>
+                <h2 class="text-center">Top 25 Songs</h2>
+                <p class="lead text-center">The songs used most frequently by NPR programs over the past 10 years.</p>
 
-        <div class="starter-template">
-            <br>
-            <h1 class="text-center">Top 25 Songs</h1>
-            <p class="lead text-center">The songs used most frequently by NPR programs over the past 10 years.</p>
+            </div>
+
+            <div class="col-sm-7">
+                <br>
+                <ul class="list-group">
+                    {% for song in object_list %}
+                        <li class="list-group-item">
+                            {% if song.preview %}
+                                <div class="song-preview">
+                                    <i class="material-icons play md-36">play_circle_outline</i>
+                                    <audio src="{{ song.preview }}" type="audio/mpeg">
+                                        <source src="{{ song.preview }}" type="audio/mpeg">
+                                    </audio>
+                                </div>
+                            {% endif %}
+                            <div class="song-detail">
+{#                                <span class="label label-default label-pill pull-xs-right">{{ song.num_interludes }}</span>#}
+                                <strong>{{ song.name }}</strong> | {{ song.artist.name }}
+                                <br>
+                                <em>{{ song.num_interludes }} plays. Last played on {{ song.date_last_played }}.</em>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
         </div>
-
-        <ul class="list-group">
-            {% for song in object_list %}
-                <li class="list-group-item">
-                    <span class="label label-default label-pill pull-xs-right">{{ song.num_interludes }}</span>
-                    {{ forloop.counter }}.  <strong>{{ song.name }}</strong> | <em>{{ song.artist.name }}</em>
-                    <small>Date last played: {{ song.date_last_played }}</small>
-                </li>
-            {% endfor %}
-        </ul>
-
-        <br>
         <br>
 
     </div><!-- /.container -->
