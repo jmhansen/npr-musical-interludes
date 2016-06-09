@@ -14,7 +14,9 @@ class IndexView(TemplateView):
         context['top_artists'] = (models.Artist.objects.exclude(hidden=True)
                                                        .annotate(interlude_count=Count('songs__interludes'))
                                                        .order_by('-interlude_count')[:10])
-        context['top_songs'] = (models.Song.objects.annotate(interlude_count=Count('interludes'))
+        context['top_songs'] = (models.Song.objects.exclude(hidden=True)
+                                                   .exclude(artist__hidden=True)
+                                                   .annotate(interlude_count=Count('interludes'))
                                                    .order_by('-interlude_count')[:10])
         return context
 
@@ -24,7 +26,9 @@ class SongListTop25View(ListView):
     template_name = 'songs/songs_list_top_25.html'
 
     def get_queryset(self):
-        return models.Song.objects.annotate(interlude_count=Count('interludes')).order_by('-interlude_count')[:25]
+        return (models.Song.objects.exclude(hidden=True)
+                                   .exclude(artist__hidden=True)
+                                   .annotate(interlude_count=Count('interludes')).order_by('-interlude_count')[:25])
 
 
 class ArtistListTop25View(ListView):
@@ -82,6 +86,8 @@ class ProgramDetailView(DetailView):
                                   .annotate(interlude_count=Count('songs__interludes'))
                                   .order_by('-interlude_count')[:10])
         context['top_songs'] = (models.Song.objects.filter(interludes__episode__program=self.object)
+                                .exclude(artist__hidden=True)
+                                .exclude(hidden=True)
                                 .annotate(interlude_count=Count('interludes'))
                                 .order_by('-interlude_count')[:10])
         return context

@@ -73,6 +73,7 @@ class Song(models.Model):
     # Some songs do not have an artist listed
     artist = models.ForeignKey(Artist, related_name='songs', blank=True, null=True)
     preview = models.URLField(blank=True)
+    hidden = models.BooleanField(default=False)
 
     class Meta:
         unique_together = ('name', 'artist')
