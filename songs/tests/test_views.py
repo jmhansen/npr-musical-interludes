@@ -50,3 +50,10 @@ class ArtistDetailViewTests(SongsViewsBaseTestCase):
     def test_for_http_200_response(self):
         response = self.client.get(reverse('artist_detail', kwargs={'slug': self.artist.slug}))
         self.assertEqual(response.status_code, 200)
+
+
+class ProgramDetailViewTests(SongsViewsBaseTestCase):
+
+    def test_for_http_200_response(self):
+        response = self.client.get(reverse('program_detail', kwargs={'slug': self.program.slug}))
+        self.assertEqual(response.status_code, 200)

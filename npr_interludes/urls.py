@@ -25,7 +25,9 @@ urlpatterns = [
     url(r'^$', views.IndexView.as_view(), name='home'),
     url(r'^songs/top-25/$', views.SongListTop25View.as_view(), name='song_list_top_25'),
     url(r'^artists/top-25/$', views.ArtistListTop25View.as_view(), name='artist_list_top_25'),
-    url(r'^artists/(?P<slug>[\w-]+)/$', views.ArtistDetailView.as_view(), name='artist_detail'),
     url(r'^episodes/(?P<program_slug>[\w-]+)/(?P<episode_date>[0-9-]+)/$',
-        views.EpisodeDetailView.as_view(), name='episode_detail')
+        views.EpisodeDetailView.as_view(), name='episode_detail'),
+    url(r'^artists/(?P<slug>[\w-]+)/$', views.ArtistDetailView.as_view(), name='artist_detail'),
+    url(r'^program/(?P<slug>[\w-]+)/$', views.ProgramDetailView.as_view(), name='program_detail'),
+
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

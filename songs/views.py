@@ -68,3 +68,20 @@ class ArtistDetailView(DetailView):
                                                     .annotate(interlude_count=Count('interludes'))
                                                     .order_by('-interlude_count'))
         return context
+
+
+class ProgramDetailView(DetailView):
+    model = models.Program
+    template_name = 'songs/program_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ProgramDetailView, self).get_context_data(**kwargs)
+        context['recent_episodes'] = self.object.episodes.order_by('-date')[:10]
+        context['top_artists'] = (models.Artist.objects.filter(songs__interludes__episode__program=self.object)
+                                  .exclude(hidden=True)
+                                  .annotate(interlude_count=Count('songs__interludes'))
+                                  .order_by('-interlude_count')[:10])
+        context['top_songs'] = (models.Song.objects.filter(interludes__episode__program=self.object)
+                                .annotate(interlude_count=Count('interludes'))
+                                .order_by('-interlude_count')[:10])
+        return context

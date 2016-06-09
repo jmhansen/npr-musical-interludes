@@ -4,29 +4,32 @@
 
 {% block content %}
 
-    <br>
-
     <div class="container">
         <div class="row">
+            <br>
+            <h2>{{ object.name }}</h2>
+            <div class="program-data">
+                <p>{{ object.num_episodes }} episodes, {{ object.num_interludes }} interludes.</p>
+                <p>Data from {{ object.date_earliest_episode }} to {{ object.date_latest_episode }}.</p>
+            </div>
+            <br>
+        </div>
+        <div class="row">
             <div class="col-sm-4">
-                <div class="starter-template">
-                    <h4>Programs</h4>
 
-
-                </div>
-
+                <h5>Recent episodes</h5>
                 <ul class="list-group">
-                    {% for program in program_list %}
-{#                        <a href="{% url 'episode_detail' program_slug=program.slug episode_date=program.date_latest_episode %}" class="list-group-item">#}
-                        <a href="{% url 'program_detail' slug=program.slug %}" class="list-group-item">
-                            <strong>{{ program.name }}</strong>
+                    {% for episode in recent_episodes %}
+                        <a href="{% url 'episode_detail' program_slug=episode.program.slug episode_date=episode.date %}" class="list-group-item">
+                            <strong>{{ episode.date|date:"l" }}</strong> | {{ episode.date|date:"F j, Y" }}
                         </a>
                     {% endfor %}
                 </ul>
             </div>
 
+
             <div class="col-sm-4">
-                <h4>Top Artists</h4>
+                <h5>Top Artists</h5>
                 <div class="list-group">
                     {% for artist in top_artists %}
                         <a href="{% url 'artist_detail' slug=artist.slug %}" class="list-group-item" style="height: 64px; padding: 2px;">
@@ -42,16 +45,14 @@
                             </div>
                         </a>
                     {% endfor %}
-                    <a href="{% url 'artist_list_top_25' %}">View more</a>
                 </div>
             </div>
 
             <div class="col-sm-4">
-                <h4>Top Songs</h4>
+                <h5>Top Songs</h5>
                 <ul class="list-group">
                     {% for song in top_songs %}
                         <li class="list-group-item">
-                            <span class="label label-default label-pill pull-xs-right">{{ song.num_interludes }}</span>
                             {% if song.preview %}
                                 <div class="song-preview">
                                     <i class="material-icons play md-36">play_circle_outline</i>
@@ -69,12 +70,13 @@
                         </li>
                     {% endfor %}
                 </ul>
-                <a href="{% url 'song_list_top_25' %}">View more</a>
             </div>
+
         </div>
+        <br>
+        <br>
 
     </div><!-- /.container -->
-
 
 
 {% endblock %}

@@ -6,6 +6,17 @@ body {
     line-height: 1.25;
 }
 
+.header-link {
+    color: black;
+}
+
+.header-link:hover {
+    color: lightslategray;
+    text-decoration: none;
+}
+
+
+
 .list-block {
     background-color: #1f7e9a;
     color: white;
@@ -49,6 +60,11 @@ body {
     padding-top: 1em;
     line-height: .5;
     text-align: right;
+}
+
+.program-data {
+    padding-top: .5em;
+    line-height: .25;
 }
 
 .song-preview {

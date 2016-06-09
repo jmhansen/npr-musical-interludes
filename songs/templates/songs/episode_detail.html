@@ -8,7 +8,9 @@
         <div class="row">
             <div class="col-sm-4 text-lg-right text-md-right">
                 <br>
-                <h2>{{ object.program.name }}</h2>
+                <h2>
+                    <a href="{% url 'program_detail' object.program.slug %}" class="header-link">{{ object.program.name }}</a>
+                </h2>
 
                 <h6>{{ object.date }}</h6>
                 {% if prev_episode %}
