@@ -1,5 +1,7 @@
 from __future__ import absolute_import
 
+from celery import shared_task
+
 from libs.utils.compile_npr_links import get_latest_npr_links
 from libs.utils.html_parsers import crawl_for_song_lists
 from songs.libs.deserializers import create_from_list
