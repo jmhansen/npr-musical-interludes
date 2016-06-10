@@ -56,6 +56,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # third party apps
+    'djcelery',
     # project apps
     'songs.apps.SongsConfig'
 ]
@@ -138,3 +140,11 @@ STATICFILES_DIRS = (
 )
 
 MEDIA_ROOT = '/media/'
+
+# Celery
+BROKER_BACKEND = 'redis'
+BROKER_URL = os.environ.get('REDISTOGO_URL', 'redis://localhost:6379')
+CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_ACCEPT_CONTENT = ['json']
