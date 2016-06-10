@@ -29,6 +29,7 @@ ALLOWED_HOSTS = []
 #Load vars from env (all in one place so they're visible)
 ENV_VARS = {
     'SECRET_KEY': os.environ.get('SECRET_KEY'),
+    'REDISTOGO_URL': os.environ.get('REDISTOGO_URL'),
 }
 
 SECRET_KEY = ENV_VARS['SECRET_KEY']
