@@ -7,5 +7,14 @@ model-mommy==1.2.6
 psycopg2==2.6.1
 redis==2.10.5
 requests==2.10.0
+six==1.10.0
 spotipy==2.3.8
 whitenoise==3.1
+
+# celery related packages
+celery==3.1.23
+amqp==1.4.9
+anyjson==0.3.3
+billiard==3.3.0.23
+kombu==3.0.35
+pytz==2016.4
