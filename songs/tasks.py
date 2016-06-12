@@ -9,6 +9,7 @@ from songs.libs.deserializers import create_from_list
 from songs.models import Program
 
 
+@shared_task
 def update_npr_program(program_pk):
     program = Program.objects.get(pk=program_pk)
     links = get_latest_npr_links(program.href, program.pk)
