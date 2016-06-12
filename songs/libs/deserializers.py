@@ -1,7 +1,11 @@
 import datetime
 
 from django.utils.text import slugify
+
+from spotipy.client import SpotifyException
+
 from ..models import Program, Episode, Artist, Song, Interlude
+from .spotify_api_utils import get_artist_thumbnail, get_song_preview
 
 
 def create_from_dict(song_dict):
@@ -46,7 +50,17 @@ def create_from_dict(song_dict):
     episode, created = Episode.objects.get_or_create(
         program=program, date=datetime.datetime.strptime(song_dict['date'], '%B %d, %Y').date())
     artist, created = Artist.objects.get_or_create(name=artist_name, slug=slugify(artist_name))
+    if created or not artist.thumbnail:
+        try:
+            get_artist_thumbnail(artist.pk)
+        except SpotifyException:
+            pass
     song, created = Song.objects.get_or_create(name=song_name, artist=artist)
+    if created or not song.preview:
+        try:
+            get_song_preview(song.pk)
+        except SpotifyException:
+            pass
     Interlude.objects.get_or_create(song=song, order=song_dict['order'], episode=episode)
 
 
