@@ -144,6 +144,7 @@ MEDIA_ROOT = '/media/'
 # Celery
 BROKER_BACKEND = 'redis'
 BROKER_URL = os.environ.get('REDISTOGO_URL', 'redis://localhost:6379')
+BROKER_POOL_LIMIT = 0
 CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
