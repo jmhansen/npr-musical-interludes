@@ -1,7 +1,5 @@
-import requests, datetime
+import requests
 from bs4 import BeautifulSoup
-
-from songs.models import Program
 
 
 def get_songs_from_programs_page(url, program=None):
@@ -52,7 +50,7 @@ def get_songs_from_programs_page(url, program=None):
         print u"Status code {} for url {}".format(r.status_code, url)
 
 
-def crawl_for_song_lists(url_list, program=None):
+def crawl_for_song_lists(url_list, program):
     song_list = []
     for url in url_list:
         print "starting {}".format(url)
@@ -60,19 +58,3 @@ def crawl_for_song_lists(url_list, program=None):
         print "finished {}".format(url)
 
     return song_list
-
-
-# def get_data_from_latest_npr_episode(program_pk):
-#     program = Program.objects.get(pk=program_pk)
-#
-#     r = requests.get(program.href)
-#
-#     if r.status_code == 200:
-#         soup = BeautifulSoup(r.text, 'lxml')
-#         show_date = soup.find(class_='date').text
-#         prev_link = soup.find(class_='prev').next_element['href']
-#
-#         show_date_object = datetime.datetime.strptime(show_date, '%B %d, %Y').date()
-#
-#         if show_date_object > program.date_latest_episode:
-
