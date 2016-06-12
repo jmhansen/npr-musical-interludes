@@ -53,13 +53,13 @@ def get_songs_from_programs_page(url, program=None):
 
 
 def crawl_for_song_lists(url_list, program=None):
-    super_song_list = []
+    song_list = []
     for url in url_list:
         print "starting {}".format(url)
-        super_song_list.extend(get_songs_from_programs_page(url=url, program=program))
+        song_list.extend(get_songs_from_programs_page(url=url, program=program))
         print "finished {}".format(url)
 
-    return super_song_list
+    return song_list
 
 
 # def get_data_from_latest_npr_episode(program_pk):
