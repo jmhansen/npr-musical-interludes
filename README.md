@@ -3,7 +3,8 @@
 I'm a frequent NPR listener, and over the years I've discovered a lot of good music by paying attention to the 
 musical interludes between NPR stories.  This is a personal project using 
 [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#) to compile song data from npr.org and the 
-Spotify API for serving images and song clips.
+Spotify API for serving images and song clips.  Program episodes are updated daily using 
+[Celery](http://docs.celeryproject.org/en/latest/index.html) and Redis.
 
 View the project at [https://public-radio-interludes.herokuapp.com](https://public-radio-interludes.herokuapp.com).
 
