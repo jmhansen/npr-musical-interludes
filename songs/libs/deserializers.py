@@ -68,6 +68,6 @@ def create_from_list(list_of_dicts):
 
     for song_dict in list_of_dicts:
         _index = list_of_dicts.index(song_dict)
-        print "Starting index {} of {}".format(_index, (len(list_of_dicts) - 1))
+        print("Starting index {} of {}".format(_index, (len(list_of_dicts) - 1)))
         create_from_dict(song_dict=song_dict)
-        print "Finished index {}".format(_index)
+        print("Finished index {}".format(_index))
