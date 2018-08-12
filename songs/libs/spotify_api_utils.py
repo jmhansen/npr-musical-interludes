@@ -1,12 +1,13 @@
 import spotipy
-import spotipy.util as util
+from spotipy.oauth2 import SpotifyClientCredentials
 
 from django.conf import settings
 
 from songs.models import Artist, Song
 
 # token = util.prompt_for_user_token(client_id=settings.SPOTIFY_CLIENT_ID)
-spotify = spotipy.Spotify()
+client_credentials_manager = SpotifyClientCredentials(client_id=settings.SPOTIFY_CLIENT_ID, client_secret=settings.SPOTIFY_CLIENT_SECRET)
+spotify = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 
 def get_artist_thumbnail(artist_pk):

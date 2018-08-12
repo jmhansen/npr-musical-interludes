@@ -20,6 +20,15 @@ def get_npr_links(starting_url):
     return links
 
 
+def get_npr_links_from_archive_page(archive_url):
+    r = requests.get(archive_url)
+    if r.status_code == 200:
+        soup = BeautifulSoup(r.text, 'lxml')
+        shows_raw = soup.find_all(class_='program-show__title')
+        show_urls = [show.find('a')['href'] for show in shows_raw]
+        return show_urls
+
+
 def get_latest_npr_links(starting_url, program_pk, initial=True, _list=None):
     """ Check for program episodes not already entered in database """
     if initial:

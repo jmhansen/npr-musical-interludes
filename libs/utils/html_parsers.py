@@ -9,7 +9,8 @@ def get_songs_from_programs_page(url, program=None):
     if r.status_code == 200:
 
         soup = BeautifulSoup(r.text, 'lxml')
-        show_date = soup.find(class_='date').text
+        raw_show_date = soup.find(class_='date').text
+        show_date = raw_show_date.splitlines()[2].lstrip()
 
         if program:
             show_title = program.name

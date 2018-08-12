@@ -10,7 +10,7 @@ class Program(models.Model):
     slug = models.SlugField(max_length=75)
     href = models.URLField(blank=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     @property
@@ -28,6 +28,10 @@ class Program(models.Model):
     @property
     def num_interludes(self):
         return Interlude.objects.filter(episode__program=self).count()
+    
+    @property
+    def archive_href(self):
+        return '{}/archive'.format(self.href)
 
 
 class Episode(models.Model):
@@ -48,7 +52,7 @@ class Artist(models.Model):
     # for 'Various Artists', 'NA', and others that should not be displayed in lists of artists
     hidden = models.BooleanField(default=False)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     @property
@@ -78,7 +82,7 @@ class Song(models.Model):
     class Meta:
         unique_together = ('name', 'artist')
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     @property
@@ -101,5 +105,5 @@ class Interlude(models.Model):
         get_latest_by = 'episode__date'
         ordering = ['order']
 
-    def __unicode__(self):
-        return u"{} - {} - {}".format(self.song.name, self.episode.program.name, self.order)
+    def __str__(self):
+        return "{} - {} - {}".format(self.song.name, self.episode.program.name, self.order)
