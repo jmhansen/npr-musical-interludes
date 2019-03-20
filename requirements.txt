@@ -2,13 +2,13 @@ beautifulsoup4==4.4.1
 dj-database-url==0.4.1
 Django==1.9.6
 gunicorn==19.5.0
-lxml==3.6.0
+lxml==4.2.3
 model-mommy==1.2.6
 psycopg2==2.6.1
 redis==2.10.5
 requests==2.10.0
 six==1.10.0
-spotipy==2.3.8
+spotipy==2.4.4
 whitenoise==3.1
 
 # celery related packages

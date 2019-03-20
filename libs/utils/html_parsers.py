@@ -9,7 +9,8 @@ def get_songs_from_programs_page(url, program=None):
     if r.status_code == 200:
 
         soup = BeautifulSoup(r.text, 'lxml')
-        show_date = soup.find(class_='date').text
+        raw_show_date = soup.find(class_='date').text
+        show_date = raw_show_date.splitlines()[2].lstrip()
 
         if program:
             show_title = program.name
@@ -43,18 +44,18 @@ def get_songs_from_programs_page(url, program=None):
                 }
                 song_list.append(song_dict)
 
-        print "{} songs in song_list".format(len(song_list))
+        print("{} songs in song_list".format(len(song_list)))
         return song_list
 
     else:
-        print u"Status code {} for url {}".format(r.status_code, url)
+        print("Status code {} for url {}".format(r.status_code, url))
 
 
 def crawl_for_song_lists(url_list, program):
     song_list = []
     for url in url_list:
-        print "starting {}".format(url)
+        print("starting {}".format(url))
         song_list.extend(get_songs_from_programs_page(url=url, program=program))
-        print "finished {}".format(url)
+        print("finished {}".format(url))
 
     return song_list
